@@ -1,0 +1,298 @@
+/* ==========================================================================
+   Admin Shell — Reference Luxury Theme
+   Aesthetics: Midnight Indigo Violet Sidebar (#1E1648) & Warm Light Canvas
+   ========================================================================== */
+
+.admin-shell {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(ellipse 65% 50% at 95% 5%, rgba(253, 238, 233, 0.85) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 5% 35%, rgba(245, 235, 249, 0.85) 0%, transparent 60%),
+    linear-gradient(180deg, #FAF9FC 0%, #F5F6FC 50%, #FAF9FC 100%);
+  background-size: 100% 100%;
+  color: var(--color-text-primary);
+  position: relative;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 260px;
+  height: 100vh;
+  background: var(--color-sidebar-bg, #1E1648);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+  gap: var(--space-4);
+  z-index: 40;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 0 24px rgba(20, 14, 48, 0.2);
+}
+
+.admin-brand-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+}
+
+.admin-brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: #FFFFFF !important;
+}
+
+.admin-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-sunset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(110, 86, 207, 0.35);
+}
+
+.admin-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-brand-text .brand-title {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #FFFFFF !important;
+}
+
+.admin-brand-text .brand-tier-badge {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #D9538F;
+  text-transform: uppercase;
+}
+
+/* Nav list */
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: #A297C8;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+
+.admin-nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.admin-nav-item.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-weight: 700;
+}
+
+/* Footer */
+.admin-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 9px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: #F87171;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.admin-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #FCA5A5;
+}
+
+.admin-user-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--gradient-sunset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.admin-user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.admin-user-info .user-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-user-info .user-role-label {
+  font-size: 10px;
+  color: #A297C8;
+}
+
+/* Main Area */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.admin-topbar {
+  height: 68px;
+  padding: 0 var(--space-6);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid #E8ECF5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(30, 20, 60, 0.03);
+}
+
+.admin-breadcrumb {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.admin-page-heading {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.01em;
+}
+
+.admin-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+.admin-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 22, 37, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 35;
+}
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 100;
+    transform: translateX(-100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 22, 37, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 95;
+  }
+
+  .admin-topbar {
+    padding: 0 var(--space-4);
+    height: 62px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-topbar {
+    padding: 0 14px;
+    height: 58px;
+    gap: 8px;
+  }
+
+  .admin-page-heading {
+    font-size: 14.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+
+  .admin-breadcrumb {
+    font-size: 9.5px;
+  }
+}
+

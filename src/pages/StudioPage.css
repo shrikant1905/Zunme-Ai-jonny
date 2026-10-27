@@ -1,0 +1,199 @@
+/* ==========================================================================
+   ZUNME AI — Studio Page (Reference Luxury Theme)
+   Aesthetics: Crisp White Cards, Warm Pastel Canvas & Royal Purple Accents
+   ========================================================================== */
+
+.studio-page {
+  padding: 36px 24px;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.studio-header-area {
+  margin-bottom: 28px;
+}
+
+.studio-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+
+.studio-desc {
+  font-size: 14.5px;
+  color: #5F6B85;
+}
+
+.studio-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+/* Category Toggle - Clean Pill Segmented Control */
+.category-toggle-tabs {
+  display: flex;
+  background: #F0F3FA;
+  padding: 5px;
+  border-radius: var(--radius-full);
+  border: 1px solid #E2E6F2;
+  margin-bottom: 24px;
+  box-shadow: inset 0 1px 2px rgba(30, 20, 60, 0.04);
+}
+
+.category-tab-btn {
+  flex: 1;
+  padding: 10px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  color: #5F6B85;
+  transition: all var(--transition-fast);
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.category-tab-btn.active {
+  background: var(--color-primary, #6E56CF);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(110, 86, 207, 0.35);
+}
+
+/* Form Container Card in Crisp White */
+.studio-form-card {
+  background: #FFFFFF;
+  border: 1px solid #E8ECF5;
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 
+    0 4px 20px -2px rgba(30, 20, 60, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.form-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+/* Tone & Length Chips */
+.pill-selector-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill-option-btn {
+  padding: 7px 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E6F2;
+  border-radius: var(--radius-full);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #5F6B85;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(30, 20, 60, 0.02);
+  transition: all var(--transition-fast);
+}
+
+.pill-option-btn:hover {
+  background: #F8F9FD;
+  color: #111625;
+}
+
+.pill-option-btn.selected {
+  background: #EFEBFC;
+  border-color: #6E56CF;
+  color: #6E56CF;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(110, 86, 207, 0.18);
+}
+
+/* Output Result Pane in Crisp White */
+.studio-output-card {
+  background: #FFFFFF;
+  border: 1px solid #E8ECF5;
+  border-radius: var(--radius-xl);
+  box-shadow: 
+    0 4px 20px -2px rgba(30, 20, 60, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  padding: 28px;
+  animation: fadeIn 200ms ease-out;
+}
+
+.output-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E8ECF5;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.output-title-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.output-title-area h3 {
+  color: #111625;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.output-text-content {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #272F3E;
+  white-space: pre-wrap;
+  background: #FAFBFD;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid #E8ECF5;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .studio-page {
+    padding: 20px 16px;
+  }
+  .form-grid-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .studio-page {
+    padding: 16px 12px;
+  }
+  .studio-title {
+    font-size: 22px;
+  }
+  .studio-desc {
+    font-size: 13px;
+  }
+  .studio-form-card,
+  .studio-output-card {
+    padding: 16px 14px;
+    border-radius: var(--radius-lg);
+  }
+  .category-tab-btn {
+    padding: 8px 12px;
+    font-size: 12.5px;
+  }
+  .output-text-content {
+    padding: 14px;
+    font-size: 13.5px;
+  }
+}
+

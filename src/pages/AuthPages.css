@@ -1,0 +1,977 @@
+/* ==========================================================================
+   ZUNME AI — Authentication Pages (Reference Luxury Theme)
+   Aesthetics: Crisp White Card, Warm Light Ambient Canvas & Sunset Accents
+   ========================================================================== */
+
+.auth-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg, #FAF9FC);
+  background-image: 
+    radial-gradient(ellipse 65% 50% at 85% 15%, rgba(253, 238, 233, 0.85) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 45%, rgba(245, 235, 249, 0.85) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 80% 85%, rgba(243, 239, 252, 0.75) 0%, transparent 70%),
+    linear-gradient(180deg, #FAF9FC 0%, #F5F6FC 50%, #FAF9FC 100%);
+  background-size: 100% 100%;
+  padding: 24px;
+}
+
+/* Crisp White Luxury Auth Card */
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #FFFFFF;
+  border-radius: var(--radius-2xl);
+  border: 1px solid #E8ECF5;
+  box-shadow: 
+    0 24px 60px -8px rgba(30, 20, 60, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 38px 34px;
+  animation: scaleIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 20px;
+  color: #111625;
+  margin-bottom: 20px;
+}
+
+.auth-brand-logo .auth-logo-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-sunset);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.025em;
+  margin-bottom: 6px;
+}
+
+.auth-subtitle {
+  font-size: 13.5px;
+  color: #5F6B85;
+}
+
+.auth-alert-error {
+  background: #FEECEB;
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  color: #E11D48;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-alert-success {
+  background: #E8F8F0;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: #059669;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  color: #8C97B0;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.password-toggle-btn:hover {
+  color: #111625;
+}
+
+.auth-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  font-size: 13px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #5F6B85;
+}
+
+.checkbox-label input[type="checkbox"] {
+  accent-color: var(--color-primary);
+}
+
+.auth-link {
+  color: var(--color-primary, #6E56CF);
+  font-weight: 600;
+  font-size: 13px;
+  transition: all var(--transition-fast);
+}
+
+.auth-link:hover {
+  color: #5339B8;
+  text-decoration: underline;
+}
+
+.auth-footer-prompt {
+  text-align: center;
+  margin-top: 26px;
+  font-size: 13px;
+  color: #5F6B85;
+}
+
+/* ==========================================================================
+   PORTAL LOGIN — HOME PAGE LUXURY LIGHT & SUNSET THEME
+   Strict viewport fitting (100vh non-scrollable desktop) + responsive fallback
+   ========================================================================== */
+
+.energy-auth-page {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  background-color: #0F121E;
+  background-image: 
+    radial-gradient(circle at 85% 15%, rgba(110, 86, 207, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
+    linear-gradient(135deg, rgba(250, 249, 252, 0.62) 0%, rgba(244, 242, 250, 0.68) 50%, rgba(238, 242, 255, 0.74) 100%),
+    url('/zunme_login_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  color: var(--color-text-primary, #111625);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: var(--font-sans);
+  box-sizing: border-box;
+}
+
+/* Atmosphere Layers from Home Page */
+.energy-auth-page .cosmic-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(110, 86, 207, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 86, 207, 0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.energy-auth-page .ambient-aurora-top {
+  position: absolute;
+  top: -80px;
+  right: -5%;
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(253, 238, 233, 0.5) 0%, rgba(245, 235, 249, 0.35) 45%, transparent 75%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.energy-auth-page .ambient-aurora-accent {
+  position: absolute;
+  top: 500px;
+  left: -100px;
+  width: 700px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(239, 235, 252, 0.5) 0%, rgba(245, 235, 249, 0.3) 45%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header matching LandingPage */
+.energy-auth-topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(232, 236, 245, 0.85);
+  box-shadow: 0 4px 18px -2px rgba(30, 20, 60, 0.04);
+  z-index: 10;
+}
+
+.energy-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6E56CF;
+  background: #EFEBFC;
+  border: 1px solid rgba(110, 86, 207, 0.25);
+  padding: 5px 12px;
+  border-radius: 9999px;
+}
+
+/* Main Container — Fitted within remaining viewport */
+.energy-auth-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.energy-auth-grid {
+  width: 100%;
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  gap: 36px;
+  align-items: center;
+  margin: auto 0;
+}
+
+/* Left Login Card (Enlarged width, luxury glass styling) */
+.energy-login-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 30px 32px;
+  box-shadow: 
+    0 24px 60px -10px rgba(15, 23, 42, 0.14),
+    0 4px 16px rgba(0, 0, 0, 0.03),
+    0 0 0 1px rgba(110, 86, 207, 0.06);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.energy-login-header {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.energy-card-logo-box {
+  margin: 0 auto 8px auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+.energy-card-logo-box .brand-glyph {
+  font-size: 22px;
+}
+
+.energy-card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.energy-card-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.02em;
+}
+
+.energy-card-meta {
+  margin: 3px 0 1px 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #6E56CF;
+  text-transform: uppercase;
+}
+
+.energy-card-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #5F6B85;
+}
+
+.energy-alert-error {
+  background: #FEECEB;
+  border: 1px solid rgba(225, 29, 72, 0.25);
+  color: #E11D48;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.energy-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.energy-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.energy-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.energy-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.energy-input-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 0.92rem;
+  color: #8C97B0;
+  pointer-events: none;
+}
+
+.energy-input {
+  width: 100%;
+  height: 44px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0 42px 0 40px;
+  color: #111625;
+  font-size: 0.88rem;
+  outline: none;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+}
+
+.energy-input:focus {
+  border-color: #6E56CF;
+  box-shadow: 0 0 0 2.5px rgba(110, 86, 207, 0.18);
+  background: #FFFFFF;
+}
+
+.energy-pw-toggle {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #8C97B0;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.energy-pw-toggle:hover {
+  color: #111625;
+}
+
+/* Context Box */
+.energy-context-box {
+  background: #F8FAFD;
+  border: 1px solid #E8ECF5;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.energy-context-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+
+.energy-ctx-muted {
+  color: #64748B;
+}
+
+.energy-ctx-highlight {
+  color: #111625;
+  font-weight: 700;
+}
+
+.energy-ctx-org {
+  color: #6E56CF;
+  font-weight: 700;
+}
+
+.energy-submit-btn {
+  width: 100%;
+  height: 46px;
+  background: var(--gradient-primary, linear-gradient(135deg, #6E56CF 0%, #7C3AED 100%));
+  border: 1px solid rgba(110, 86, 207, 0.4);
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(110, 86, 207, 0.25);
+  margin-top: 4px;
+}
+
+.energy-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(110, 86, 207, 0.35);
+}
+
+.energy-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.energy-card-footer {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #F1F5F9;
+}
+
+.energy-footer-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: #64748B;
+}
+
+.text-emerald {
+  color: #059669;
+}
+
+/* Right Column: Personas Panel */
+.energy-personas-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  max-width: 680px;
+  width: 100%;
+}
+
+.energy-personas-header {
+  margin-bottom: 6px;
+}
+
+.energy-panel-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.02em;
+}
+
+.energy-panel-subtitle {
+  margin: 2px 0 0 0;
+  font-size: 0.75rem;
+  color: #5F6B85;
+}
+
+.energy-personas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.persona-badge-tag {
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.energy-persona-card.is-selected .persona-badge-tag {
+  background: #EFEBFC;
+  border-color: rgba(110, 86, 207, 0.3);
+  color: #6E56CF;
+}
+
+.energy-persona-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 236, 245, 0.9);
+  border-radius: 12px;
+  padding: 8px 12px;
+  height: 54px;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.16s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  position: relative;
+}
+
+.energy-persona-card:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(110, 86, 207, 0.45);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(110, 86, 207, 0.12);
+}
+
+.energy-persona-card.is-selected {
+  background: #FFFFFF;
+  border-color: #6E56CF;
+  box-shadow: 0 0 0 1.5px #6E56CF, 0 6px 18px rgba(110, 86, 207, 0.16);
+}
+
+.persona-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.16s ease;
+}
+
+.persona-text-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.persona-name {
+  font-size: 0.81rem;
+  font-weight: 700;
+  color: #111625;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.persona-sub {
+  font-size: 0.67rem;
+  color: #64748B;
+}
+
+.persona-arrow {
+  color: #94A3B8;
+  flex-shrink: 0;
+  transition: transform 0.16s ease, color 0.16s ease;
+}
+
+.energy-persona-card:hover .persona-arrow,
+.energy-persona-card.is-selected .persona-arrow {
+  color: #6E56CF;
+  transform: translateX(2px);
+}
+
+.energy-personas-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 236, 245, 0.85);
+  border-radius: 10px;
+  font-size: 0.72rem;
+  color: #5F6B85;
+}
+
+.energy-security-note {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.energy-roles-counter {
+  color: #6E56CF;
+  font-weight: 700;
+}
+
+/* Large Laptop / Ultra-compact height screen tuning (e.g., 768px height) */
+@media (max-height: 820px) and (min-width: 1041px) {
+  .energy-auth-topbar {
+    height: 52px;
+  }
+  .energy-auth-main {
+    padding: 8px 24px;
+  }
+  .energy-login-card {
+    padding: 20px 24px;
+  }
+  .energy-card-logo-box {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+  }
+  .energy-card-title {
+    font-size: 1.2rem;
+  }
+  .energy-input {
+    height: 40px;
+  }
+  .energy-submit-btn {
+    height: 42px;
+  }
+  .energy-personas-grid {
+    gap: 8px;
+  }
+  .energy-persona-card {
+    padding: 6px 10px;
+  }
+  .persona-icon-box {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Intermediate Laptop Screen Widths (1041px - 1200px) */
+@media (max-width: 1200px) and (min-width: 1041px) {
+  .energy-auth-grid {
+    grid-template-columns: 460px 1fr;
+    gap: 26px;
+  }
+}
+
+/* Tablets and Mobile Responsive Behavior (1040px and below) */
+@media (max-width: 1040px) {
+  .energy-auth-page {
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .energy-auth-topbar {
+    height: 56px;
+    padding: 0 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .energy-auth-main {
+    flex: 1 0 auto;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    min-height: auto !important;
+    padding: 24px 20px 48px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .energy-auth-grid {
+    grid-template-columns: 1fr;
+    max-height: none;
+    height: auto;
+    gap: 24px;
+    max-width: 520px;
+    margin: 0 auto !important;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .energy-login-card {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    padding: 26px 24px;
+    border-radius: 22px;
+    box-shadow: 0 12px 36px -8px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(110, 86, 207, 0.08);
+  }
+
+  .energy-personas-panel {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 22px 20px;
+    border-radius: 22px;
+  }
+
+  .energy-personas-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .energy-auth-topbar {
+    padding: 0 14px;
+    height: 52px;
+  }
+
+  .energy-status-tag {
+    display: none;
+  }
+
+  .energy-topbar-brand span {
+    font-size: 14px;
+  }
+
+  .energy-auth-main {
+    padding: 16px 12px 48px;
+  }
+
+  .energy-auth-grid {
+    gap: 18px;
+    max-width: 100%;
+  }
+
+  .energy-login-card {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+
+  .energy-card-title {
+    font-size: 1.2rem;
+  }
+
+  .energy-personas-panel {
+    padding: 18px 14px;
+    border-radius: 20px;
+  }
+
+  .energy-panel-title {
+    font-size: 1.05rem;
+  }
+
+  .energy-personas-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .energy-persona-card {
+    height: 52px;
+    padding: 6px 12px;
+    border-radius: 12px;
+  }
+
+  .persona-icon-box {
+    width: 30px;
+    height: 30px;
+  }
+
+  .persona-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .persona-sub {
+    font-size: 0.68rem;
+  }
+
+  .energy-personas-bottom {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   Universal Single Sign-On (SSO) 10-Platform Badge Strip
+   ========================================================================== */
+.sso-unified-badge-card {
+  margin-top: 10px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.65) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 12px;
+  padding: 11px 13px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.04);
+  text-align: left;
+}
+
+.sso-badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.sso-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #15803D;
+}
+
+.sso-shield-icon {
+  color: #16A34A;
+  flex-shrink: 0;
+}
+
+.sso-ecosystem-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(16, 185, 129, 0.12);
+  color: #15803D;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.sso-badge-subtitle {
+  margin: 0 0 9px 0;
+  font-size: 10.5px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.sso-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.sso-platform-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  padding: 4px 4px;
+  border-radius: 6px;
+  transition: all 0.18s ease;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  min-width: 0;
+}
+
+.sso-platform-chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--chip-accent, #6366F1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #FAFAFC;
+}
+
+.sso-chip-icon {
+  font-size: 11px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sso-chip-name {
+  font-size: 10px;
+  color: #334155;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .sso-platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+  .sso-platform-chip {
+    padding: 5px 6px;
+    justify-content: flex-start;
+  }
+}
+
+
+

@@ -1,0 +1,230 @@
+/* ==========================================================================
+   AD FORMAT BUILDERS STUDIO DESIGN SYSTEM
+   Meta, Amazon, and Google multi-format creative builders & live simulators
+   ========================================================================== */
+
+.ad-builders-container {
+  padding: 24px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Header */
+.ad-builders-header {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Channel Platform Switcher */
+.channel-switcher-bar {
+  display: flex;
+  gap: 8px;
+  background: #F1F5F9;
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.channel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.channel-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.channel-btn.active {
+  background: #FFFFFF;
+  color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Format Pills Carousel / Nav */
+.format-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.format-pill {
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: #FFFFFF;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.format-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.format-pill.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(110, 86, 207, 0.3);
+}
+
+/* Builder Workspace Grid: Form (Left) vs Simulator Preview (Right) */
+.builder-workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Preview Phone Frame for Vertical Formats (Stories, Reels) */
+.phone-simulator-frame {
+  width: 300px;
+  max-width: 100%;
+  height: 540px;
+  background: #000000;
+  border-radius: 36px;
+  border: 10px solid #1E293B;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+/* Carousel Scrollable Strip */
+.carousel-preview-strip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 4px;
+  scrollbar-width: thin;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-card-item {
+  width: 200px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .builder-workspace-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ad-builders-container {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .ad-builders-header {
+    padding: 16px 14px;
+    border-radius: 14px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ad-builders-header-actions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .ad-builders-header-actions .btn {
+    flex: 1;
+    justify-content: center;
+    font-size: 11.5px;
+    padding: 8px 10px;
+  }
+
+  .ad-builders-title {
+    font-size: 19px !important;
+    line-height: 1.3 !important;
+  }
+
+  .channel-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .format-pill {
+    padding: 6px 12px;
+    font-size: 11.5px;
+  }
+
+  .phone-simulator-frame {
+    width: 270px;
+    height: 480px;
+    border-width: 8px;
+    border-radius: 28px;
+  }
+}

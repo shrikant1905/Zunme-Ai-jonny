@@ -1,0 +1,280 @@
+/* ==========================================================================
+   7-STEP ADVERTISING ONBOARDING WIZARD DESIGN SYSTEM
+   Step progress bar, responsive forms, validation, and review summary
+   ========================================================================== */
+
+.ad-wizard-container {
+  padding: 24px;
+  max-width: 1000px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.ad-wizard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* 7-Step Progress Stepper */
+.ad-wizard-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ad-wizard-step-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  opacity: 0.55;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ad-wizard-step-node.active {
+  opacity: 1;
+}
+
+.ad-wizard-step-node.completed {
+  opacity: 0.9;
+}
+
+.ad-wizard-step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ad-wizard-step-node.active .ad-wizard-step-circle {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(110, 86, 207, 0.2);
+}
+
+.ad-wizard-step-node.completed .ad-wizard-step-circle {
+  background: #059669;
+  color: #FFFFFF;
+}
+
+.ad-wizard-step-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.ad-wizard-step-divider {
+  flex: 1;
+  height: 2px;
+  background: #E2E8F0;
+  margin: 0 4px;
+  min-width: 14px;
+}
+
+.ad-wizard-step-divider.completed {
+  background: #059669;
+}
+
+/* Step Card */
+.ad-wizard-card {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.ad-wizard-card-header {
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 16px;
+}
+
+.ad-wizard-step-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+}
+
+.ad-wizard-step-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Footer Controls */
+.ad-wizard-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Review Summary Grid */
+.ad-wizard-review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.ad-wizard-review-box {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.ad-wizard-review-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.ad-wizard-review-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 768px) {
+  .ad-wizard-container {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .ad-wizard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ad-wizard-header .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ad-wizard-title {
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+  }
+
+  .ad-wizard-card {
+    padding: 18px 14px;
+    border-radius: 14px;
+    gap: 16px;
+  }
+
+  .ad-wizard-step-title {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+
+  .ad-wizard-step-desc {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .ad-wizard-stepper {
+    padding: 10px 12px;
+    gap: 6px;
+    border-radius: 12px;
+  }
+
+  .ad-wizard-step-node {
+    gap: 5px;
+  }
+
+  .ad-wizard-step-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .ad-wizard-step-label {
+    font-size: 11px;
+  }
+
+  .ad-wizard-step-divider {
+    min-width: 8px;
+    margin: 0 2px;
+  }
+
+  .ad-wizard-catalog-source-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .ad-wizard-objective-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .ad-wizard-pro-tier-box {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .ad-wizard-review-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ad-wizard-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .ad-wizard-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

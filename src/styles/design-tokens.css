@@ -1,0 +1,109 @@
+:root {
+  /* Brand Palette - Reference Theme: Royal Electric Violet & Cosmic Sunset */
+  --color-primary: #6E56CF;
+  --color-primary-hover: #5B45E0;
+  --color-primary-active: #4F38C2;
+  --color-primary-light: #EFEBFC;
+  --color-primary-glow: 0 4px 18px rgba(110, 86, 207, 0.35);
+  --color-primary-ring: rgba(110, 86, 207, 0.3);
+
+  /* Reference Signature Sunset Cosmic Gradient */
+  --gradient-sunset: linear-gradient(110deg, #1C1548 0%, #2E1B64 25%, #582488 50%, #903D9C 75%, #D86FA7 90%, #F5A6C4 100%);
+  --gradient-sunset-subtle: linear-gradient(135deg, rgba(28, 21, 72, 0.95) 0%, rgba(88, 36, 136, 0.9) 50%, rgba(216, 111, 167, 0.85) 100%);
+  --gradient-primary: linear-gradient(135deg, #6E56CF 0%, #7C3AED 100%);
+
+  /* Reference Sidebar - Deep Midnight Violet Indigo */
+  --color-sidebar-bg: #1E1648;
+  --color-sidebar-surface: #261D5A;
+  --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+  --color-sidebar-active: rgba(255, 255, 255, 0.14);
+  --color-sidebar-text: #A297C8;
+  --color-sidebar-text-muted: #7D71A8;
+  --color-sidebar-text-active: #FFFFFF;
+  --color-sidebar-badge: #D9538F;
+
+  /* Reference Clean Canvas & Card Backgrounds */
+  --color-bg: #FAF9FC;
+  --color-bg-alt: #F4F6FC;
+  --color-bg-surface: #FFFFFF;
+  --color-surface-card: #FFFFFF;
+  --color-surface-card-hover: #FAFBFD;
+  --color-surface-secondary: #F6F8FD;
+  --color-surface-hover: #F0F3FA;
+  --color-surface-active: #E8EDF8;
+
+  /* Frosted Glass Surface Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-bg-elevated: rgba(255, 255, 255, 0.95);
+  --glass-blur: blur(24px) saturate(180%);
+  --glass-border: 1px solid rgba(230, 235, 246, 0.85);
+  --glass-border-highlight: 1px solid rgba(110, 86, 207, 0.25);
+  --glass-shadow: 0 12px 36px -4px rgba(30, 20, 60, 0.06), 0 2px 6px rgba(0, 0, 0, 0.02);
+
+  /* Reference Typography Colors */
+  --color-text-primary: #111625;
+  --color-text-secondary: #5F6B85;
+  --color-text-muted: #8C97B0;
+  --color-text-tertiary: #B0B9CC;
+  --color-text-inverse: #FFFFFF;
+
+  /* Reference Borders & Dividers */
+  --color-border: #E8ECF5;
+  --color-border-subtle: #F0F3F9;
+  --color-border-hover: rgba(110, 86, 207, 0.35);
+  --color-border-active: #6E56CF;
+
+  /* Reference Badges & Tag Colors */
+  --color-success: #059669;
+  --color-success-light: #E8F8F0;
+  --color-success-border: rgba(5, 150, 105, 0.25);
+  --color-warning: #D97706;
+  --color-warning-light: #FEF3E2;
+  --color-warning-border: rgba(217, 119, 6, 0.25);
+  --color-error: #E11D48;
+  --color-error-light: #FEECEB;
+  --color-error-border: rgba(225, 29, 72, 0.25);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Corner Radii - Reference Pill and Rounded Card Tokens */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* Reference Clean Soft Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 8px 0 rgba(30, 20, 60, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 6px 20px -2px rgba(30, 20, 60, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 16px 36px -4px rgba(30, 20, 60, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
+  --shadow-xl: 0 24px 50px -8px rgba(30, 20, 60, 0.12), 0 4px 10px rgba(0, 0, 0, 0.03);
+  --shadow-primary: 0 4px 16px -2px rgba(110, 86, 207, 0.35);
+
+  /* Layout sizing */
+  --sidebar-width: 260px;
+  --header-height: 68px;
+  --max-content-width: 1240px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}

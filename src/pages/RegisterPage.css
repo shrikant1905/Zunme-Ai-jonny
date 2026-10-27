@@ -1,0 +1,1007 @@
+/* ==========================================================================
+   ZUNME AI — Premium Register / Create Account Experience
+   Aesthetics: Luxury Glassmorphic Split-Screen, Ambient Aurora Orbs & Micro-Animations
+   Desktop: 100vh Fit with ZERO Scrolling
+   Mobile: Fully Responsive & Touch-Optimized
+   ========================================================================== */
+
+.register-viewport {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #0F121E;
+  background-image: 
+    radial-gradient(ellipse 70% 60% at 20% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.65) 60%, transparent 100%),
+    radial-gradient(circle at 85% 15%, rgba(110, 86, 207, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
+    linear-gradient(135deg, rgba(250, 249, 252, 0.72) 0%, rgba(244, 242, 250, 0.78) 50%, rgba(238, 242, 255, 0.82) 100%),
+    url('/zunme_login_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 16px 32px;
+  box-sizing: border-box;
+}
+
+/* Ambient Background Aurora Orbs & Grid */
+.register-bg-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.65;
+  transition: all 1s ease;
+}
+
+.orb-primary {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(110, 86, 207, 0.28) 0%, rgba(124, 58, 237, 0.08) 60%, transparent 80%);
+  animation: floatOrbPrimary 18s ease-in-out infinite alternate;
+}
+
+.orb-sunset {
+  width: 480px;
+  height: 480px;
+  bottom: -60px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.22) 0%, rgba(217, 83, 143, 0.06) 60%, transparent 80%);
+  animation: floatOrbSunset 22s ease-in-out infinite alternate;
+}
+
+.orb-emerald {
+  width: 380px;
+  height: 380px;
+  top: 40%;
+  left: 35%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, rgba(5, 150, 105, 0.03) 60%, transparent 80%);
+  animation: floatOrbEmerald 25s ease-in-out infinite alternate;
+}
+
+.ambient-grid-mesh {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(110, 86, 207, 0.08) 1px, transparent 1px),
+    radial-gradient(rgba(110, 86, 207, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+  opacity: 0.7;
+}
+
+@keyframes floatOrbPrimary {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.08); }
+  100% { transform: translate(-30px, 80px) scale(0.95); }
+}
+
+@keyframes floatOrbSunset {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, -50px) scale(1.1); }
+  100% { transform: translate(40px, -70px) scale(0.92); }
+}
+
+@keyframes floatOrbEmerald {
+  0% { transform: translate(0, 0) scale(0.9); }
+  50% { transform: translate(50px, -40px) scale(1.12); }
+  100% { transform: translate(-40px, 30px) scale(1); }
+}
+
+/* Split-Screen Main Container */
+.register-split-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: BRAND SHOWCASE & CAPABILITIES
+   ========================================================================== */
+.register-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: var(--radius-full, 9999px);
+  background: #FFFFFF;
+  border: 1.5px solid #C4B5FD;
+  width: fit-content;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #4C1D95;
+  text-transform: uppercase;
+  box-shadow: 0 2px 10px rgba(110, 86, 207, 0.12);
+}
+
+.showcase-badge-pill span {
+  color: #4C1D95 !important;
+  font-weight: 800;
+}
+
+.badge-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 10px #10B981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+.showcase-heading {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #0A0D14 !important;
+  margin: 0;
+  text-shadow: none !important;
+}
+
+.showcase-heading .gradient-text {
+  color: #5B21B6;
+  background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 45%, #C026D3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+  font-weight: 900;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+.showcase-description {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #1E293B !important;
+  margin: 0;
+  max-width: 520px;
+  text-shadow: none !important;
+}
+
+/* Feature Cards Stack */
+.showcase-features-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.showcase-feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 13px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 236, 245, 0.9);
+  box-shadow: 0 2px 10px rgba(30, 20, 60, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-feature-card:hover {
+  transform: translateY(-2px);
+  background: #FFFFFF;
+  border-color: rgba(110, 86, 207, 0.3);
+  box-shadow: 0 8px 22px -4px rgba(110, 86, 207, 0.12);
+}
+
+.feature-card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.feature-card-icon.violet {
+  background: linear-gradient(135deg, #6E56CF 0%, #7C3AED 100%);
+  color: #FFFFFF;
+}
+
+.feature-card-icon.sunset {
+  background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+  color: #FFFFFF;
+}
+
+.feature-card-icon.emerald {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+}
+
+.feature-card-content h3 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111625;
+  margin: 0 0 2px 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.feature-card-content p {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: #5F6B85;
+  margin: 0;
+}
+
+.feature-mini-pill {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1.5px 6px;
+  border-radius: 9999px;
+  background: #F0F3FA;
+  color: #6E56CF;
+  letter-spacing: 0.04em;
+}
+
+/* Social Proof Banner */
+.showcase-social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 13px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed #D9DFEC;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.avatar-stack-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.stack-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  margin-left: -7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.stack-avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar-stack-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-stack-count {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #111625;
+}
+
+.avatar-stack-label {
+  font-size: 10px;
+  color: #5F6B85;
+}
+
+.security-guarantee-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #059669;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: LUXURY REGISTRATION CARD (COMPACT VIEWPORT FIT)
+   ========================================================================== */
+.register-form-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 18px;
+  border: 1px solid rgba(232, 236, 245, 0.95);
+  box-shadow: 
+    0 24px 60px -8px rgba(30, 20, 60, 0.12),
+    0 4px 16px -2px rgba(110, 86, 207, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  padding: 20px 26px;
+  position: relative;
+  animation: fadeInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.register-card-header {
+  margin-bottom: 10px;
+}
+
+.register-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.register-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.register-logo-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(110deg, #1C1548 0%, #582488 50%, #D86FA7 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(110, 86, 207, 0.3);
+}
+
+.register-brand-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.01em;
+}
+
+.register-card-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.025em;
+  margin: 0 0 3px 0;
+}
+
+.register-card-subtitle {
+  font-size: 12px;
+  color: #5F6B85;
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+}
+
+/* Inputs with Prefix Icons */
+.register-input-group {
+  margin-bottom: 8px;
+}
+
+.register-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #111625;
+  margin-bottom: 3px;
+}
+
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-leading-icon {
+  position: absolute;
+  left: 11px;
+  color: #8C97B0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.register-input-field {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 36px;
+  border-radius: 9px;
+  border: 1px solid #E2E6F2;
+  background: #FAFBFD;
+  font-size: 12.5px;
+  color: #111625;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.register-input-field:focus {
+  outline: none;
+  background: #FFFFFF;
+  border-color: #6E56CF;
+  box-shadow: 0 0 0 2.5px rgba(110, 86, 207, 0.15);
+}
+
+.register-input-field.input-valid {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.register-input-field.input-invalid {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.password-toggle-action {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #8C97B0;
+  cursor: pointer;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s ease;
+}
+
+.password-toggle-action:hover {
+  color: #111625;
+}
+
+/* Dynamic Password Strength Meter */
+.password-strength-container {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.strength-bars-track {
+  display: flex;
+  gap: 3px;
+  height: 3px;
+  width: 100%;
+}
+
+.strength-bar-segment {
+  flex: 1;
+  height: 100%;
+  border-radius: 2px;
+  background: #E8ECF5;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.strength-bar-segment.active-weak {
+  background: #EF4444;
+}
+
+.strength-bar-segment.active-fair {
+  background: #F59E0B;
+}
+
+.strength-bar-segment.active-good {
+  background: #10B981;
+}
+
+.strength-bar-segment.active-strong {
+  background: #6E56CF;
+}
+
+.strength-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.strength-label-text {
+  font-weight: 700;
+}
+
+.strength-label-text.weak { color: #EF4444; }
+.strength-label-text.fair { color: #F59E0B; }
+.strength-label-text.good { color: #10B981; }
+.strength-label-text.strong { color: #6E56CF; }
+
+.strength-hint-text {
+  color: #8C97B0;
+  font-size: 10px;
+}
+
+/* Match Indicator */
+.password-match-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.password-match-badge.matched {
+  color: #10B981;
+}
+
+.password-match-badge.mismatched {
+  color: #EF4444;
+}
+
+/* Terms Checkbox */
+.register-terms-row {
+  margin: 8px 0 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.register-terms-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  accent-color: var(--color-primary, #6E56CF);
+  cursor: pointer;
+  margin-top: 1px;
+}
+
+.register-terms-text {
+  font-size: 10.5px;
+  color: #5F6B85;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.register-terms-text a {
+  color: #6E56CF;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Primary Submit CTA Button */
+.btn-register-submit {
+  width: 100%;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6E56CF 0%, #7C3AED 50%, #8B5CF6 100%);
+  color: #FFFFFF;
+  border: none;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px -2px rgba(110, 86, 207, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-register-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px -2px rgba(110, 86, 207, 0.45);
+}
+
+.btn-register-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-register-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Shimmer Light Reflection */
+.btn-register-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  animation: buttonShimmer 4s infinite ease-in-out;
+}
+
+@keyframes buttonShimmer {
+  0% { left: -100%; }
+  35%, 100% { left: 200%; }
+}
+
+/* Trust Guarantee Row */
+.register-trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #5F6B85;
+}
+
+.trust-item svg {
+  color: #10B981;
+  flex-shrink: 0;
+}
+
+/* Footer Link */
+.register-card-footer {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #F0F3FA;
+  font-size: 12px;
+  color: #5F6B85;
+}
+
+.register-card-footer a {
+  color: #6E56CF;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.register-card-footer a:hover {
+  color: #5339B8;
+  text-decoration: underline;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Spinner */
+.spinner-register {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE SYSTEM
+   ========================================================================== */
+@media (max-width: 960px) {
+  .register-viewport {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 24px 16px;
+    align-items: flex-start;
+    background-attachment: scroll;
+    background-position: center top;
+  }
+
+  .register-split-container {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    max-height: none;
+    height: auto;
+    gap: 24px;
+    margin: 0 auto;
+  }
+
+  .register-showcase {
+    text-align: center;
+    align-items: center;
+    padding: 0;
+    gap: 14px;
+  }
+
+  .showcase-heading {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .showcase-description {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .showcase-features-stack {
+    width: 100%;
+  }
+
+  .showcase-feature-card {
+    text-align: left;
+  }
+
+  .showcase-social-proof {
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .register-form-card {
+    padding: 24px 20px;
+    border-radius: 18px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .register-viewport {
+    padding: 16px 12px;
+  }
+
+  .register-split-container {
+    gap: 18px;
+  }
+
+  .showcase-heading {
+    font-size: 22px;
+  }
+
+  .showcase-description {
+    font-size: 12px;
+  }
+
+  .showcase-features-stack {
+    gap: 8px;
+  }
+
+  .showcase-feature-card {
+    padding: 9px 12px;
+    gap: 10px;
+  }
+
+  .feature-card-content h3 {
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+
+  .feature-card-content p {
+    font-size: 11px;
+  }
+
+  .register-form-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  .register-card-title {
+    font-size: 18px;
+  }
+
+  .register-card-subtitle {
+    font-size: 11.5px;
+  }
+
+  .register-input-field {
+    height: 42px; /* touch-friendly on mobile */
+    font-size: 14px;
+  }
+
+  .btn-register-submit {
+    height: 44px; /* touch-friendly on mobile */
+    font-size: 14px;
+  }
+
+  .avatar-stack-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .avatar-stack-meta {
+    text-align: center;
+  }
+
+  .register-trust-row {
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+  }
+}
+
+/* Safeguard for laptops/displays with short vertical height (e.g., <= 620px) */
+@media (max-height: 620px) and (min-width: 961px) {
+  .register-viewport {
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    overflow-y: auto;
+    padding: 14px 24px;
+  }
+  .register-split-container {
+    max-height: none;
+    height: auto;
+  }
+}
+
+/* ==========================================================================
+   Universal Single Sign-On (SSO) 10-Platform Badge Strip
+   ========================================================================== */
+.sso-unified-badge-card {
+  margin-top: 10px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.65) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 12px;
+  padding: 11px 13px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.04);
+  text-align: left;
+}
+
+.sso-badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.sso-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #15803D;
+}
+
+.sso-shield-icon {
+  color: #16A34A;
+  flex-shrink: 0;
+}
+
+.sso-ecosystem-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(16, 185, 129, 0.12);
+  color: #15803D;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.sso-badge-subtitle {
+  margin: 0 0 9px 0;
+  font-size: 10.5px;
+  color: #64748B;
+  line-height: 1.4;
+}
+
+.sso-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.sso-platform-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  padding: 4px 4px;
+  border-radius: 6px;
+  transition: all 0.18s ease;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  min-width: 0;
+}
+
+.sso-platform-chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--chip-accent, #6366F1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: #FAFAFC;
+}
+
+.sso-chip-icon {
+  font-size: 11px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sso-chip-name {
+  font-size: 10px;
+  color: #334155;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .sso-platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+  .sso-platform-chip {
+    padding: 5px 6px;
+    justify-content: flex-start;
+  }
+}
+

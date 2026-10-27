@@ -1,0 +1,191 @@
+/* ==========================================================================
+   ZUNME AI — Admin Page (Reference Luxury Theme)
+   Aesthetics: Crisp White Cards, Warm Pastel Canvas & Royal Purple Accents
+   ========================================================================== */
+
+.admin-page {
+  padding: 36px 24px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.admin-header-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.admin-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.admin-page-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #111625;
+  letter-spacing: -0.025em;
+}
+
+/* Operational Metrics Cards in Crisp White */
+.admin-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 34px;
+}
+
+.admin-metrics-grid .metric-card {
+  background: #FFFFFF;
+  border: 1px solid #E8ECF5;
+  border-radius: var(--radius-xl);
+  padding: 22px;
+  box-shadow: 
+    0 4px 20px -2px rgba(30, 20, 60, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-metrics-grid .metric-card:hover {
+  border-color: rgba(110, 86, 207, 0.35);
+  box-shadow: 0 12px 30px -4px rgba(30, 20, 60, 0.08);
+  transform: translateY(-2px);
+}
+
+.metric-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5F6B85;
+}
+
+.metric-number-display {
+  font-size: 28px;
+  font-weight: 900;
+  color: #111625;
+  letter-spacing: -0.025em;
+}
+
+.metric-trend-note {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #059669;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* User Directory Table Card in Crisp White */
+.admin-table-card {
+  background: #FFFFFF;
+  border: 1px solid #E8ECF5;
+  border-radius: var(--radius-xl);
+  box-shadow: 
+    0 4px 20px -2px rgba(30, 20, 60, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+}
+
+.table-toolbar {
+  padding: 18px 24px;
+  border-bottom: 1px solid #E8ECF5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.table-toolbar h2 {
+  color: #111625;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.table-search-input {
+  max-width: 320px;
+  width: 100%;
+  background: #FFFFFF !important;
+  border: 1px solid #E2E6F2 !important;
+  color: #111625 !important;
+  border-radius: var(--radius-full) !important;
+}
+
+.responsive-table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.admin-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.admin-data-table th {
+  background: #F0F3FA;
+  padding: 13px 20px;
+  font-weight: 700;
+  font-size: 11px;
+  color: #111625;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #E8ECF5;
+  white-space: nowrap;
+}
+
+.admin-data-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #F0F3FA;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.admin-data-table tr:hover td {
+  background: #FAFBFD;
+}
+
+@media (max-width: 992px) {
+  .admin-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-page {
+    padding: 20px 16px;
+  }
+  .admin-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-page {
+    padding: 16px 12px;
+  }
+  .admin-metric-card {
+    padding: 14px 16px;
+    border-radius: var(--radius-lg);
+  }
+  .admin-metric-value {
+    font-size: 24px;
+  }
+  .admin-table-card {
+    padding: 14px 12px;
+    border-radius: var(--radius-lg);
+  }
+}
+

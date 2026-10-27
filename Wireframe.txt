@@ -1,0 +1,1091 @@
+ZUNME AI — MASTER PROJECT BLUEPRINT, MVP WIREFRAMES & DEVELOPMENT PLAN
+Document Version: 1.0.0-PROPOSAL
+Status: Read-Only Architectural Blueprint (Awaiting Stakeholder Approval)
+Roles Represented: Senior Product Architect, UI/UX Designer, Full-Stack Architect, QA Lead
+Target Repository: c:\Users\HGP\Desktop\intern projects\Zunme AI (dwivedid544-source/Zunme-AI-)
+
+REPOSITORY STATUS ASSESSMENT
+An automated inspection of the target workspace was conducted prior to drafting this blueprint:
+
+Repository Health: Initialized Git repository on branch main linked to https://github.com/dwivedid544-source/Zunme-AI-.git.
+Current Workspace State: The repository contains two root directories: Frontend/ and Backend/. Both directories are currently completely empty (0 files, 0 commits on main, remote repository has no pushed branches or commits).
+Existing Code / Dependencies: No runtime code, package managers, build configurations, or design tokens currently exist in the repository.
+Compliance Guarantee: This blueprint adheres strictly to the read-only mandate. No files, configurations, tables, or dependencies have been generated or modified. Implementation will begin only upon client review and formal approval.
+1. PRODUCT UNDERSTANDING BASED ON SUPPLIED REQUIREMENTS
+1.1 Executive Product Vision
+Zunme AI is conceptualized as an integrated, unified AI productivity workspace tailored for individuals, creators, influencers, entrepreneurs, and modern small businesses. Rather than forcing users to jump between fragmented utilities (e.g., standard conversational LLM interfaces, separate web search engines, standalone copy generators, and disconnected note-taking tools), Zunme AI consolidates the daily creative and research workflow into a single cohesive SaaS platform.
+
+Over time, Zunme AI is envisioned to evolve into a multi-faceted AI ecosystem featuring:
+
+Intelligent conversational assistance.
+Web research with verified, live source attribution.
+Rapid text and marketing content generation.
+A persistent personal content library.
+A creator discovery and asset marketplace.
+Multi-platform social publishing and scheduling.
+Small-business and CRM workflow integration (including potential nErgy CRM alignment).
+An integrated advertising and sponsored distribution platform (Zunme Ads).
+Creator monetization and transparent revenue-sharing.
+1.2 Phase 1 MVP Core Purpose
+Phase 1 does not attempt to launch the complete ecosystem at once. Instead, it delivers a rock-solid, high-utility, testable Minimum Viable Product (MVP) that solves the core problem: allowing an authenticated user to research live topics, converse with an AI assistant, generate production-ready text content, and store their outputs reliably in a personal library.
+
+Every functional capability in Phase 1 (Chat, Web Search, Content Studio, and My Library) will be backed by genuine API providers and server-side persistence—never placeholder screens or mocked client-side stubs.
+
+2. CONFIRMED REQUIREMENTS VS. ASSUMPTIONS & OPEN QUESTIONS
+2.1 Confirmed Requirements (From Project Brief)
+Visual Direction: Modern, premium, light-theme AI SaaS interface.
+Palette Tokens: Primary #635BFF (indigo/violet), Main Background #FFFFFF, Main Text #111827, Secondary Surface #F3F4F6, subtle neutral borders (#E5E7EB).
+Typography: Inter (or modern clean sans-serif) with clear hierarchy and readable line-heights.
+Responsiveness: Full responsive support spanning 320px mobile viewport up to 1920px wide desktop displays without layout breakages, text truncation, or horizontal scrolling.
+MVP Core Scope: Eight functional screens:
+Public Landing Page (/)
+Authentication (/login, /register, /forgot-password)
+Authenticated Dashboard & AI Chat Workspace (/app/chat)
+Live Web Search with source citations (/app/search)
+Text Content Studio (/app/studio)
+Saved Content Library (/app/library)
+Account Settings (/app/settings)
+Minimal Admin (/admin)
+Real Providers: AI Chat, Web Search, and Content Studio must invoke actual provider APIs with server-side credential isolation.
+Team Structure: Two full-stack developers with clear ownership boundaries. Developer 1 leads Core Workspace (Chat/Auth/Admin); Developer 2 leads Discovery & Content (Search/Studio/Library).
+2.2 Architectural Assumptions
+Tech Stack Recommendation: Since the repository is currently empty, we propose a standardized, type-safe full-stack TypeScript architecture:
+Frontend: React 18+ with Vite, TypeScript, React Router v6, TailwindCSS + custom tokens matching the specified palette, Lucide React icons.
+Backend: Node.js with Express (or Fastify) and TypeScript, Zod schema validation, Prisma ORM with PostgreSQL (or SQLite for local dev if cloud DB is pending).
+Authentication: Stateless JSON Web Tokens (Access Token in memory/header, Refresh Token in httpOnly secure cookie) with Argon2/bcrypt password hashing.
+Search Provider: Integration with a specialized search API such as Tavily Search API or Serper.dev, which return structured, verified URLs, snippets, and page titles rather than raw HTML scraping.
+AI Provider: Integration with OpenAI API (gpt-4o-mini or gpt-4o) or Anthropic Claude 3.5 Sonnet via server-side SDKs.
+2.3 Open Questions & Unanswered Client Decisions
+#	Question / Decision Area	Context & Impact	Proposed Default (If Not Specified)
+Q1	Streaming vs. Request-Response	Does the MVP AI Chat require real-time token streaming via Server-Sent Events (SSE), or is standard JSON response acceptable?	Recommendation: Implement SSE streaming for Chat and Web Search summaries for modern SaaS responsiveness.
+Q2	Live Email Delivery (SMTP/SaaS)	Is an email delivery provider (Resend, SendGrid, AWS SES) provisioned for MVP signup verification and password reset?	Recommendation: For local MVP testing, log password reset tokens to server console; integrate Resend/SendGrid when credentials are provided.
+Q3	Search & AI Provider Provisioning	Which specific commercial AI provider (OpenAI, Anthropic, Gemini) and Web Search API (Tavily, Serper, Brave) will be funded?	Recommendation: OpenAI (gpt-4o-mini for cost efficiency) and Tavily API (built specifically for AI agent search grounding).
+Q4	Usage Quotas & Rate Limits	Should the MVP enforce per-user daily token or search caps to prevent API billing spikes?	Recommendation: Set soft rate limits (e.g., 30 chats/hour, 20 searches/hour per user) enforced via Redis/in-memory rate limiter.
+Q5	Library Item Editing	Should users be able to edit the content of saved items in My Library, or is the MVP strictly View, Copy, Filter, and Delete?	Recommendation: View, Copy, and Delete in Phase 1; inline rich-text editing deferred to Phase 1.1.
+Q6	Minimal Admin Permissions	Does admin need user impersonation or destructive deletion, or strictly user listing, status toggling (active/suspended), and aggregate counts?	Recommendation: Strictly read-only statistics and user status toggling (active / suspended).
+3. MVP SCOPE VS. FUTURE-PHASE ROADMAP
+mermaid
+timeline
+    title Zunme AI Strategic Product Phasing
+    section Phase 1 (MVP)
+        Landing Page & Auth : Public marketing, secure authentication
+        AI Chat Workspace : Multi-turn conversations, persistence
+        Web Search Engine : Live search retrieval & verified citations
+        Content Studio : Text & marketing copy generation
+        My Library : Save, filter, view, copy, delete content
+        Admin & Settings : Account profile, basic operational metrics
+    section Phase 2
+        Creator Marketplace : Creator profiles, asset upload, public showcase
+        Asset Management : File uploads, image handling, custom tagging
+    section Phase 3
+        Multi-modal Studio : AI image generation (Flux/DALL-E), video scripts
+        Rich Document Editor : Collaborative document canvas, version history
+    section Phase 4
+        Social Integrations : YouTube, TikTok, Instagram, X, LinkedIn posting
+        Content Scheduler : Calendar view, automated publish queue, analytics
+    section Phase 5
+        Zunme Ads Platform : Self-serve ad campaigns, bidding engine, PPC/PPV
+        nErgy CRM Deep Sync : Lead capture, customer interaction sync
+        Creator Monetization : Subscription tiers, paywalls, revenue-sharing
+Detailed In-Scope vs. Out-of-Scope Matrix
+Feature Domain	Phase 1 (MVP — Immediate Build)	Future Phases (Explicitly Out-of-Scope)
+Marketing & Onboarding	Responsive public landing page, feature highlights, standard auth (email/password), protected route guards.	Social OAuth (Google/GitHub/Apple), referral programs, team onboarding.
+Conversational AI	Multi-turn chat, markdown rendering, code formatting, conversation rename/delete, suggested starter prompts.	Voice input/output, multimodal image attachment, custom agent personas, file upload RAG.
+Web Research	Query submission, live search API lookup, AI synthesized overview, cards showing verified source URLs/titles/snippets.	Deep automated multi-source synthesis, web crawling, PDF citation extraction, recurring alerts.
+Content Studio	Structured text generation (Blog outlines, Email drafts, Ad copy, Social captions), tone/length parameters, direct copy & save.	AI image/video generation, social media auto-publishing, rich-text canvas editor, template store.
+Library	Central repository for saved chats, search summaries, and generated copy; search & type filters; deletion & preview modal.	Cloud drive synchronization, shared team workspaces, version history, export to PDF/DOCX.
+Ecosystem & Ads	None (Preserve clean boundary).	Zunme Ads, PPC/PPV bidding, creator marketplace, nErgy CRM API sync, payouts.
+4. ALL EIGHT SCREEN WIREFRAMES AND THEIR INTERACTIONS
+Screen A — Public Landing Page (/)
+1. Purpose
+Introduce Zunme AI's core value proposition, demonstrate capabilities (Chat, Search, Studio, Library), establish credibility, and guide visitors to Sign Up or Sign In.
+
+2. Layout Wireframe
+text
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ [ZUNME AI]           Features    How It Works    Pricing   [Sign In] [Get Started]│
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│       [Badge: Introducing Zunme AI v1.0 Workspace]                           │
+│       Your Unified AI Workspace for Ideas, Research & Creation               │
+│       Discover current information, converse with AI, generate high-impact   │
+│       content, and save your knowledge in one seamless platform.             │
+│                                                                              │
+│             [ Start Creating Free -> ]       [ Explore Features ]            │
+│                                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  INTERACTIVE FEATURE PILLARS                                                 │
+│  ┌───────────────┐ ┌───────────────┐ ┌───────────────┐ ┌───────────────────┐  │
+│  │ AI Assistant  │ │ Live Search   │ │ Content Studio│ │ Personal Library  │  │
+│  │ Multi-turn    │ │ Verified web  │ │ High-impact   │ │ Centralized       │  │
+│  │ context chats │ │ citations     │ │ copy in secs  │ │ research hub      │  │
+│  └───────────────┘ └───────────────┘ └───────────────┘ └───────────────────┘  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  HOW IT WORKS (3 Simple Steps)                                               │
+│  1. Inquire or Research -> 2. Generate & Refine -> 3. Save to Your Library   │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  CALL TO ACTION (Ready to accelerate your workflow?)                         │
+│  [ Create Your Free Account ]                                                │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  FOOTER: (C) 2026 Zunme AI | Product | Privacy Policy | Terms of Service    │
+└──────────────────────────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+HeaderNav (Logo, Anchor Links, Sign In Button, Primary CTA)
+HeroSection (Pill Tag, Headline h1, Subheadline p, Dual CTA Buttons, App Preview Mockup)
+FeatureGrid (4 Grid Cards with icon, title, description, accent border)
+WorkflowStepsSection (Step 1, Step 2, Step 3 sequence cards)
+CTASection (Full-width banner with primary conversion button)
+PublicFooter (Brand, navigation columns, copyright notice)
+4. Interactions & Navigation
+[Get Started] / [Start Creating Free]: Navigates to /register.
+[Sign In]: Navigates to /login.
+[Features] / [How It Works]: Smooth-scroll to corresponding on-page section anchors (#features, #how-it-works).
+5. Mobile Behavior (320px – 768px)
+Header nav collapses into a slide-over mobile drawer triggered by a hamburger icon (Menu).
+Feature grid switches from 4-column desktop layout to 1-column vertical card stack.
+Hero CTA buttons stack vertically with full width (w-full).
+6. Data & API Dependencies
+Static content for Phase 1. If user already has an active session token, the Header displays [Go to Dashboard] instead of [Sign In].
+7. States
+Default: Crisp presentation, responsive typography.
+Loading: Fast initial load; standard page skeleton if dynamically hydrated.
+Screen B — Authentication (/login, /register, /forgot-password)
+1. Purpose
+Authenticate existing users, register new accounts, handle password resets, and issue secure session credentials.
+
+2. Layout Wireframe
+text
+┌────────────────────────────────────────────────────────┐
+│                      [ZUNME AI]                        │
+│                                                        │
+│                 Welcome Back to Zunme                  │
+│         Enter your credentials to access your workspace│
+│                                                        │
+│         Email Address                                  │
+│         [ user@example.com                           ] │
+│                                                        │
+│         Password                                       │
+│         [ ••••••••••••••••••                      (o)] │
+│                                                        │
+│         [x] Remember me              Forgot Password?  │
+│                                                        │
+│         [           Sign In to Workspace             ] │
+│                                                        │
+│         Don't have an account? Sign Up                 │
+└────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+AuthLayout (Centered clean card on #F3F4F6 background, brand logo atop)
+AuthForm (Field inputs, password toggle, error alert banner)
+SubmitButton (Primary #635BFF, handles loading spinner)
+AuthLinks (Toggles between Register, Login, and Forgot Password)
+4. Interactions & Navigation
+Form submission validates fields (email format, minimum 8 characters).
+Successful authentication stores token, sets user state, and redirects to /app/chat.
+Forgot Password? toggles card into password recovery email input mode.
+Sign Up link navigates to /register with Full Name, Email, Password, and Confirm Password fields.
+5. Mobile Behavior
+Card spans full screen width on mobile (p-4 padding, no horizontal margin overflow).
+6. Data & API Dependencies
+POST /api/auth/login
+POST /api/auth/register
+POST /api/auth/forgot-password
+7. States
+Default: Empty inputs with accessible placeholder text and labels.
+Loading: Inputs disabled, button displays spinner Signing In....
+Validation Error: Red inline borders and message (Invalid email address, Password must be at least 8 characters).
+Server Error: Alert banner atop form (Invalid email or password, Account suspended).
+Screen C — Main AI Workspace (/app/chat, /app/chat/:id)
+1. Purpose
+The primary interactive conversational interface. Allows multi-turn dialogs with the AI assistant, markdown rendering, code block syntax highlighting, message retries, and persistence into the conversation history sidebar.
+
+2. Layout Wireframe
+text
+┌──────────────────────┬────────────────────────────────────────────────────────┐
+│ [ZUNME AI]           │ AI Assistant                           [User Avatar v] │
+├──────────────────────┼────────────────────────────────────────────────────────┤
+│ [+ New Chat]         │                                                        │
+│                      │   ┌────────────────────────────────────────────────┐   │
+│ NAVIGATION           │   │ (User): How do I plan a go-to-market strategy? │   │
+│ [x] AI Assistant     │   └────────────────────────────────────────────────┘   │
+│ [ ] Web Search       │                                                        │
+│ [ ] Content Studio   │   ┌────────────────────────────────────────────────┐   │
+│ [ ] My Library       │   │ (Zunme AI): Here is a 5-pillar GTM framework:  │   │
+│                      │   │ 1. Value Proposition & ICP                     │   │
+│ RECENT CONVERSATIONS │   │ 2. Competitive Positioning                     │   │
+│ * Q3 Marketing Ideas │   │ 3. Distribution Channels...                    │   │
+│ * TypeScript Refactor│   │                                                │   │
+│ * Product Launch Copy│   │ [Copy] [Regenerate] [Save to Library]          │   │
+│                      │   └────────────────────────────────────────────────┘   │
+│                      │                                                        │
+│                      │                                                        │
+│ [Settings]           │   [+] [ Ask anything or describe a task...      ] [Send]│
+│ [Sign Out]           │   Press Enter to send, Shift+Enter for new line        │
+└──────────────────────┴────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+AppShell (Collapsible left sidebar + main content canvas + top utility bar)
+SidebarNavigation (Brand, New Chat button, Nav items with active highlight, Recent Chat list with delete/rename controls, user profile mini-card)
+ChatCanvas (Scrollable message history with auto-scroll lock)
+MessageBubble (User bubble on subtle surface, Assistant bubble with avatar, rich markdown renderer, code block copy button, action buttons)
+ChatInputBar (Expanding textarea, keyboard listener, send button, token count/character helper)
+4. Interactions & Navigation
+Typing query and clicking [Send] (or pressing Enter) appends user message instantly, shows typing indicator, requests backend AI response, and updates conversation ID in route.
+[+ New Chat]: Resets active conversation state, navigates to /app/chat, focuses input.
+Clicking any item in Recent Conversations: Loads past conversation messages via GET /api/conversations/:id.
+Clicking [Save to Library]: Opens quick confirmation dialog or saves the message directly into Library as a TEXT item.
+5. Mobile Behavior
+Sidebar is hidden behind a backdrop overlay, toggled via a hamburger button in the top navigation header.
+Chat canvas consumes 100% viewport width and height minus header and input bar.
+6. Data & API Dependencies
+GET /api/conversations (Sidebar recent chats)
+POST /api/conversations (Create conversation)
+GET /api/conversations/:id (Fetch history)
+POST /api/conversations/:id/messages (Send prompt, receive answer)
+DELETE /api/conversations/:id (Remove chat)
+POST /api/library (Save answer to library)
+7. States
+Empty State: Shows friendly welcoming greeting, system capability summary, and 3 clickable prompt starter pills (e.g., "Help me draft a product pitch", "Explain quantum computing simply").
+Loading State: Typing dots or pulsing skeleton indicator while LLM generates response.
+Error State: Warning bubble with [Retry Message] button if AI service times out or errors.
+Screen D — Web Search (/app/search)
+1. Purpose
+Empower users to perform real-time web research, receiving an AI-synthesized research summary accompanied by verified, clickable source citation cards (with titles, URLs, and snippets) to eliminate hallucinations.
+
+2. Layout Wireframe
+text
+┌──────────────────────┬────────────────────────────────────────────────────────┐
+│ [ZUNME AI]           │ Live Web Search                        [User Avatar v] │
+├──────────────────────┼────────────────────────────────────────────────────────┤
+│ [+ New Chat]         │                                                        │
+│                      │   [ Enter a research query or news topic...   ] [Search]│
+│ NAVIGATION           │                                                        │
+│ [ ] AI Assistant     │   RESEARCH SUMMARY                                     │
+│ [x] Web Search       │   ┌────────────────────────────────────────────────┐   │
+│ [ ] Content Studio   │   │ Recent advancements in solid-state batteries   │   │
+│ [ ] My Library       │   │ in 2026 indicate a 35% improvement in energy   │   │
+│                      │   │ density, driven by new silicon-composite...    │   │
+│                      │   │                                                │   │
+│                      │   │ [Copy Summary] [Save Research to Library]      │   │
+│                      │   └────────────────────────────────────────────────┘   │
+│                      │                                                        │
+│                      │   VERIFIED SOURCES (4 Found)                           │
+│                      │   ┌────────────────────────────────────────────────┐   │
+│                      │   │ 1. CleanTech Breakthroughs 2026                │   │
+│                      │   │ https://cleantech-journal.org/battery-tech-26  │   │
+│                      │   │ "Commercial production begins for high-nickel..."│
+│                      │   └────────────────────────────────────────────────┘   │
+│                      │   ┌────────────────────────────────────────────────┐   │
+│                      │   │ 2. Global Energy Storage Review                │   │
+│                      │   │ https://energystorage.com/reports/solid-state  │   │
+│                      │   │ "Automakers announce standardized testing..."  │   │
+│                      │   └────────────────────────────────────────────────┘   │
+└──────────────────────┴────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+SearchHeader (Title, description, query search input bar with search icon and submit button)
+SummaryCard (AI synthesized briefing, action toolbar: Copy, Save to Library)
+SourcesSection (Source counter badge, list/grid of SourceCard components)
+SourceCard (Favicon/Domain, Title link opening in new tab with rel="noopener noreferrer", Snippet preview, publication timestamp if available)
+4. Interactions & Navigation
+Entering query and submitting initiates search request.
+[Save Research to Library]: Stores the query, AI summary, and the structured array of sources into user's Library under category RESEARCH.
+Clicking any SourceCard: Opens the external webpage in a new browser tab.
+5. Mobile Behavior
+Sources list renders as a clean single-column vertical stack with truncated URL links to prevent overflow.
+6. Data & API Dependencies
+POST /api/search (Payload: { query: string }; Response: { summary: string, sources: Array<{ title, url, snippet }> }).
+POST /api/library (Payload: { title, contentType: 'RESEARCH', content, sourceMetadata }).
+7. States
+Empty State: Clean search bar with suggestions: "Latest developments in renewable energy", "AI regulatory updates in 2026".
+Loading State: Progress steps shown: "Searching verified web sources..." -> "Synthesizing research brief...".
+Error State: Alert card: "Search service unavailable or no reliable sources found. Please refine your query."
+Screen E — Content Studio (/app/studio)
+1. Purpose
+Structured text generation environment tailored for creators, marketers, and business owners to create high-converting copy (blog posts, emails, social captions, marketing outlines) with configurable parameters.
+
+2. Layout Wireframe
+text
+┌──────────────────────┬────────────────────────────────────────────────────────┐
+│ [ZUNME AI]           │ Content Studio                         [User Avatar v] │
+├──────────────────────┼────────────────────────────────────────────────────────┤
+│ [+ New Chat]         │                                                        │
+│                      │   CREATE NEW CONTENT                                   │
+│ NAVIGATION           │   Content Category                                     │
+│ [ ] AI Assistant     │   (o) Text & Articles   ( ) Marketing & Social Copy    │
+│ [ ] Web Search       │                                                        │
+│ [x] Content Studio   │   Format Type                                          │
+│ [ ] My Library       │   [ Blog Post Outline / Email Newsletter / Ad Copy   v]│
+│                      │                                                        │
+│                      │   Topic & Detailed Instructions                        │
+│                      │   [ Launching a new eco-friendly water bottle brand... ]│
+│                      │                                                        │
+│                      │   Tone of Voice             Target Length              │
+│                      │   [ Professional / Casual v] [ Medium (~500 words)   v]│
+│                      │                                                        │
+│                      │   [             Generate Content ->                  ] │
+│                      │                                                        │
+│                      │   GENERATED RESULT                                     │
+│                      │   ┌────────────────────────────────────────────────┐   │
+│                      │   │ Subject: Say Goodbye to Single-Use Plastic     │   │
+│                      │   │                                                │   │
+│                      │   │ Hey [First Name],                              │   │
+│                      │   │ We built a bottle that keeps water cold for... │   │
+│                      │   │                                                │   │
+│                      │   │ [Copy to Clipboard]  [Save to Library]         │   │
+│                      │   └────────────────────────────────────────────────┘   │
+└──────────────────────┴────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+StudioForm (Category tabs, Format selector dropdown, Instruction textarea, Tone selector, Length selector, Primary Generate button)
+StudioOutputPane (Preview card with formatted markdown text, word count counter, action toolbar)
+4. Interactions & Navigation
+Changing format updates suggested placeholder prompts.
+Clicking [Generate Content] triggers validation (requires non-empty instructions) and initiates generation.
+[Copy to Clipboard] displays temporary toast notification: "Copied to clipboard!".
+[Save to Library] saves the output with auto-generated title and category MARKETING or TEXT.
+5. Mobile Behavior
+Forms and outputs stack vertically. The output card appears smoothly beneath the form with auto-scroll into view upon completion.
+6. Data & API Dependencies
+POST /api/content/generate (Payload: { contentType, format, instructions, tone, length }).
+POST /api/library (Save generated output).
+7. States
+Empty Output State: Subtle empty state box with icon: "Fill in the parameters above and click Generate to produce high-impact copy."
+Loading State: Button disables with animated progress spinner and text "Drafting content...".
+Error State: Inline error banner if generation fails or parameters exceed length boundaries.
+Screen F — My Library (/app/library)
+1. Purpose
+Personal content repository where all saved conversations, web research briefs, and marketing texts are indexed, searchable, filterable, readable, and manageable.
+
+2. Layout Wireframe
+text
+┌──────────────────────┬────────────────────────────────────────────────────────┐
+│ [ZUNME AI]           │ My Saved Library                       [User Avatar v] │
+├──────────────────────┼────────────────────────────────────────────────────────┤
+│ [+ New Chat]         │                                                        │
+│                      │   [ Search saved items by title or keyword...        ] │
+│ NAVIGATION           │                                                        │
+│ [ ] AI Assistant     │   Filters: [ All Items (12) ]  [ Text (5) ]  [ Research (4) ]  [ Marketing (3) ]
+│ [ ] Web Search       │                                                        │
+│ [ ] Content Studio   │   ┌──────────────────────┐  ┌──────────────────────┐   │
+│ [x] My Library       │   │ [MARKETING]          │  │ [RESEARCH]           │   │
+│                      │   │ Eco-Bottle Launch    │  │ Solid State Battery  │   │
+│                      │   │ Saved Oct 14, 2026   │  │ Saved Oct 12, 2026   │   │
+│                      │   │ "Hey [First Name]..."│  │ "Recent advancements"│   │
+│                      │   │                      │  │                      │   │
+│                      │   │ [View] [Copy] [Del]  │  │ [View] [Copy] [Del]  │   │
+│                      │   └──────────────────────┘  └──────────────────────┘   │
+└──────────────────────┴────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+LibraryToolbar (Search input with clear button, category filter pill buttons)
+LibraryGrid (Responsive card grid: 1 col on mobile, 2 col on tablet, 3 col on desktop)
+LibraryCard (Type badge, Title, Creation timestamp, Truncated preview text, Action buttons: View, Copy, Delete)
+ViewItemModal (Full-screen or centered modal displaying complete text, research sources, and metadata)
+DeleteConfirmDialog (Accessible confirmation modal to prevent accidental deletion)
+4. Interactions & Navigation
+Searching filters cards client-side or queries server via debounced text search.
+Clicking Category pills (All, Text, Research, Marketing) filters cards instantly.
+Clicking [View] opens ViewItemModal displaying full content and associated source links.
+Clicking [Delete] prompts confirmation; on confirm, triggers DELETE /api/library/:id and updates UI.
+5. Mobile Behavior
+Grid switches to single-column card layout. Action buttons use touch-friendly tap targets (minimum 44x44px).
+6. Data & API Dependencies
+GET /api/library?category=&search=
+GET /api/library/:id
+DELETE /api/library/:id
+7. States
+Empty State: Friendly graphic with "No saved items found in this category. Star answers in Chat, Search, or Studio to build your library."
+Loading State: 6-card pulsing skeleton grid.
+Error State: Card alert: "Failed to load library items. Please refresh."
+Screen G — Account Settings (/app/settings)
+1. Purpose
+Allow authenticated users to manage their personal profile information (Full Name), view account email, update their security password, and review active session status.
+
+2. Layout Wireframe
+text
+┌──────────────────────┬────────────────────────────────────────────────────────┐
+│ [ZUNME AI]           │ Account Settings                       [User Avatar v] │
+├──────────────────────┼────────────────────────────────────────────────────────┤
+│ [+ New Chat]         │                                                        │
+│                      │   PROFILE INFORMATION                                  │
+│ NAVIGATION           │   Full Name                                            │
+│ [ ] AI Assistant     │   [ Alex Johnson                                     ] │
+│ [ ] Web Search       │   Email Address (Read-only)                            │
+│ [ ] Content Studio   │   [ alex.johnson@example.com                         ] │
+│ [ ] My Library       │   [ Save Profile Changes ]                             │
+│                      │                                                        │
+│                      │   SECURITY & PASSWORD                                  │
+│                      │   Current Password                                     │
+│                      │   [ ••••••••••••••••••                               ] │
+│                      │   New Password                                         │
+│                      │   [ ••••••••••••••••••                               ] │
+│                      │   [ Update Password ]                                  │
+│                      │                                                        │
+│ [x] Settings         │   DANGER ZONE                                          │
+│ [Sign Out]           │   [ Sign Out of All Devices ]                          │
+└──────────────────────┴────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+SettingsNav (Profile tab, Security tab)
+ProfileSection (Name input, read-only email, save button)
+SecuritySection (Password update fields, validation feedback)
+SessionSection (Sign out trigger)
+4. Interactions & Navigation
+[Save Profile Changes]: Sends patch request to update full name.
+[Update Password]: Validates new password length and current password validity.
+[Sign Out]: Clears auth tokens and redirects to /login.
+5. Mobile Behavior
+Sections stack cleanly with full-width inputs and distinct section dividers.
+6. Data & API Dependencies
+GET /api/users/profile
+PATCH /api/users/profile
+POST /api/users/change-password
+7. States
+Loading: Disabled form controls with save spinner.
+Success Toast: "Profile updated successfully."
+Error Alert: Inline error when current password does not match.
+Screen H — Minimal Administration (/admin)
+1. Purpose
+Provide authorized operational administrators with essential visibility into registered users, total usage metrics, and the ability to suspend/activate user accounts for operational maintenance.
+
+2. Layout Wireframe
+text
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ [ZUNME AI] ADMIN CONSOLE                     [Admin Badge] [Return to App ->]│
+├──────────────────────────────────────────────────────────────────────────────┤
+│ SYSTEM METRICS (Overview)                                                    │
+│ ┌──────────────────┐ ┌──────────────────┐ ┌────────────────────────────────┐ │
+│ │ Total Users      │ │ Total Chats      │ │ Total Searches & Content Items │ │
+│ │ 1,420            │ │ 28,540           │ │ 14,210                         │ │
+│ └──────────────────┘ └──────────────────┘ └────────────────────────────────┘ │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ USER DIRECTORY                                                               │
+│ [ Search by user email or name...             ] [Filter: Active v]           │
+│                                                                              │
+│ Name          Email                   Role     Joined       Status   Action  │
+│ ───────────────────────────────────────────────────────────────────────────  │
+│ Alex Johnson  alex@example.com        User     Oct 12, 2026 Active   [Suspend]│
+│ Sarah Connor  sarah@skynet.org        User     Oct 10, 2026 Active   [Suspend]│
+│ Bob Admin     bob@zunme.ai            Admin    Oct 01, 2026 Active   [Admin]  │
+└──────────────────────────────────────────────────────────────────────────────┘
+3. Component Hierarchy
+AdminHeader (System title, operational breadcrumbs, return to app link)
+MetricCardRow (3 summary cards: Users, Total Conversations, Total Saved Items)
+UserTable (Filter controls, paginated table, user row, status toggle button)
+4. Interactions & Navigation
+Clicking [Suspend]: Prompts admin confirmation modal; upon confirmation, toggles user isActive status via PATCH /api/admin/users/:id/status.
+Route Guard: Non-admin users attempting to navigate to /admin receive a 403 Forbidden screen with a button to return to /app/chat.
+5. Mobile Behavior
+Table converts into stacked cards on mobile screens to preserve readability without clipped columns.
+6. Data & API Dependencies
+GET /api/admin/stats
+GET /api/admin/users
+PATCH /api/admin/users/:id/status
+7. States
+Access Denied: If user.role !== 'ADMIN', render clean 403 screen.
+Loading: Skeleton rows in table.
+Empty: Table shows "No users match your search query."
+5. USER FLOWS
+mermaid
+flowchart TD
+    subgraph Flow 1: New User Onboarding
+        LP[Landing Page] -->|Click Get Started| SU[Sign Up Screen]
+        SU -->|Submit Registration| VAL1{Valid Data?}
+        VAL1 -- No --> ERR1[Show Inline Errors] --> SU
+        VAL1 -- Yes --> API_REG[POST /api/auth/register]
+        API_REG -->|Token Issued| DASH[Dashboard Shell]
+        DASH --> INIT_CHAT[Create First AI Conversation]
+    end
+    subgraph Flow 2: AI Conversation
+        INIT_CHAT --> CHAT_SCR[AI Workspace /app/chat]
+        CHAT_SCR -->|Type & Submit Message| API_MSG[POST /api/conversations/:id/messages]
+        API_MSG -->|Server LLM Request| LLM[LLM Provider API]
+        LLM -->|Stream / Return Text| CHAT_RES[Display Assistant Response]
+        CHAT_RES -->|Click Save| SAVE_LIB[POST /api/library]
+        SAVE_LIB --> LIB_CONF[Item Stored in Library]
+    end
+    subgraph Flow 3: Web Research
+        DASH --> SEARCH_SCR[/app/search]
+        SEARCH_SCR -->|Submit Search Query| API_SRCH[POST /api/search]
+        API_SRCH -->|Live Web Query| SRCH_ENG[Search API Provider]
+        SRCH_ENG -->|Return Raw Results| SRCH_SYN[LLM Synthesizes Brief]
+        SRCH_SYN --> DISP_SRCH[Display AI Summary + Source Cards]
+        DISP_SRCH -->|Click Save Research| SAVE_SRCH[POST /api/library (Type: RESEARCH)]
+    end
+    subgraph Flow 4: Content Studio
+        DASH --> STUDIO_SCR[/app/studio]
+        STUDIO_SCR -->|Select Format, Tone & Prompt| API_STUDIO[POST /api/content/generate]
+        API_STUDIO -->|LLM Structured Completion| DISP_COPY[Render Formatted Copy]
+        DISP_COPY -->|Copy to Clipboard| CLIP[Toast: Copied]
+        DISP_COPY -->|Save to Library| SAVE_STUDIO[POST /api/library (Type: MARKETING)]
+    end
+    subgraph Flow 5: Saved Content Management
+        DASH --> LIB_SCR[/app/library]
+        LIB_SCR -->|Filter or Search Query| API_LIB[GET /api/library]
+        API_LIB --> RENDER_CARDS[Render Filtered Cards]
+        RENDER_CARDS -->|Click View| MODAL_VIEW[Open Full Detail Modal]
+        RENDER_CARDS -->|Click Delete| DEL_CONF{Confirm?}
+        DEL_CONF -- Yes --> API_DEL[DELETE /api/library/:id] --> REFRESH_LIB[Remove Card from View]
+    end
+Detailed Flow Descriptions & Edge Cases
+Flow 1: New User Onboarding
+Entry: Visitor arrives at / (Landing Page).
+Action: Clicks [Start Creating Free] or [Get Started].
+Validation: On /register, system verifies valid email format, full name presence, and password complexity (minimum 8 characters).
+Authentication: Backend hashes password, provisions user record, generates JWT access and refresh credentials.
+Destination: Redirected into /app/chat with an initialized welcoming conversation and starter prompt pills.
+Failure/Retry: If email already exists, form displays accessible alert: "An account with this email already exists. Sign in instead."
+Flow 2: AI Conversation Lifecycle
+Submission: User enters prompt into ChatInputBar and submits.
+Optimistic Rendering: User message appears instantly in chat log; input clears; typing indicator activates.
+Backend Processing: Backend validates session, attaches system prompt, checks rate limits, and sends payload to LLM provider.
+Response Delivery: Complete AI response is rendered with markdown formatting and syntax highlighting.
+Persistence: Both user and assistant messages are stored in database linked to conversationId.
+Failure/Retry: If LLM provider times out or responds with an error, the assistant bubble shows an error notice with an active [Retry] button.
+Flow 3: Web Research Lifecycle
+Query: User enters topic (e.g., "Latest developments in quantum computing 2026") on /app/search.
+Search Execution: Backend invokes web search provider, obtaining top 3–5 high-relevance URLs, titles, and authoritative text snippets.
+Grounded Synthesis: Backend sends retrieved snippets to LLM with grounding instructions to formulate an executive summary without fabricating external facts.
+Attribution Display: Frontend displays the AI overview followed by distinct, clickable SourceCard items with verified URLs.
+Save Action: Clicking [Save Research] packages the summary and source metadata into a persistent SavedItem record.
+Flow 4: Content Studio Creation
+Configuration: User navigates to /app/studio, picks category (Marketing & Social Copy), format (Ad Copy), target tone (Persuasive), length (Short), and inputs product context.
+Generation: Backend constructs structured system prompt and queries LLM.
+Review & Output: Generated copy renders in StudioOutputPane with word count and copy button.
+Storage: User clicks [Save to Library]; item is stored under category MARKETING.
+Flow 5: Saved Content Management
+Discovery: User navigates to /app/library.
+Filtering: User clicks Research filter pill; library instantaneously filters to research briefs.
+Inspection: Clicking [View] opens ViewItemModal with full formatted text, citations, and creation date.
+Deletion: Clicking [Delete] triggers a confirmation modal to avoid data loss. Upon confirmation, item is purged from database.
+6. RECOMMENDED DESIGN SYSTEM
+To ensure a cohesive, professional aesthetic, all components will adhere to the following token definitions.
+
+6.1 Color Tokens
+css
+:root {
+  /* Brand Primary */
+  --primary: #635BFF;
+  --primary-hover: #4E46E5;
+  --primary-subtle: #EEF2FF;
+  --primary-text: #FFFFFF;
+  /* Surfaces & Backgrounds */
+  --bg-main: #FFFFFF;
+  --surface-secondary: #F3F4F6;
+  --surface-card: #FFFFFF;
+  --surface-hover: #F9FAFB;
+  /* Text & Content */
+  --text-primary: #111827;     /* High contrast body & headers */
+  --text-secondary: #4B5563;   /* Supporting descriptions */
+  --text-muted: #6B7280;       /* Form labels & timestamps */
+  --text-placeholder: #9CA3AF; /* Empty input placeholders */
+  /* Borders & Dividers */
+  --border-subtle: #E5E7EB;
+  --border-focus: #635BFF;
+  /* Feedback & Status */
+  --success: #10B981;
+  --success-bg: #ECFDF5;
+  --error: #EF4444;
+  --error-bg: #FEF2F2;
+  --warning: #F59E0B;
+  --warning-bg: #FFFBEB;
+}
+6.2 Typography Tokens
+Font Family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+Scale & Hierarchy:
+Display: 36px / 44px line-height, bold (font-bold) — Hero headline
+Heading 1: 28px / 36px line-height, semibold (font-semibold) — Page titles
+Heading 2: 20px / 28px line-height, semibold (font-semibold) — Section headers
+Heading 3: 16px / 24px line-height, semibold (font-semibold) — Card titles
+Body Regular: 14px / 20px line-height, normal (font-normal) — Standard UI text
+Body Small: 12px / 16px line-height, normal (font-normal) — Timestamps, badges, secondary notes
+Code: 'JetBrains Mono', 'Fira Code', monospace; 13px / 20px — Code snippets
+6.3 Spatial Grid & Radii
+Base Grid Unit: 4px (Spacing values: 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px).
+Corner Radii:
+sm (4px): Badges, tooltips.
+md (8px): Form inputs, action buttons, table cells.
+lg (12px): Cards, modals, chat message bubbles.
+full (9999px): Avatar pills, category filter buttons.
+Shadows: Minimal, subtle SaaS elevation:
+elevation-card: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)
+elevation-modal: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04)
+6.4 Accessibility Standards
+All interactive buttons and inputs must feature visible focus rings (focus-visible:ring-2 focus-visible:ring-[#635BFF]).
+Contrast ratio between --text-primary (#111827) and --bg-main (#FFFFFF) is 16.5:1 (well exceeding WCAG AAA standards).
+Touch target sizing: All mobile interactive triggers maintain a minimum area of 44x44px.
+7. PROPOSED ARCHITECTURE AND API CONTRACTS
+7.1 Proposed Directory Structure (To Be Created Post-Approval)
+text
+Zunme AI/
+├── Backend/
+│   ├── src/
+│   │   ├── config/             # Environment variables, DB client
+│   │   ├── controllers/        # Route handlers (auth, chat, search, studio, library, admin)
+│   │   ├── middleware/         # authMiddleware, adminGuard, validateRequest, rateLimiter
+│   │   ├── models/             # Prisma schema and generated client
+│   │   ├── routes/             # Express route definitions
+│   │   ├── services/           # External providers (aiService, searchService, tokenService)
+│   │   ├── types/              # Backend TypeScript interfaces
+│   │   └── server.ts           # Express server entry point
+│   ├── .env.example
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── Frontend/
+│   ├── src/
+│   │   ├── assets/             # Brand logos, icons
+│   │   ├── components/
+│   │   │   ├── common/         # Button, Input, Modal, Toast, Skeleton, Card
+│   │   │   ├── layout/         # AppShell, Sidebar, HeaderNav, Footer
+│   │   │   ├── chat/           # ChatCanvas, MessageBubble, ChatInput
+│   │   │   ├── search/         # SearchBar, SourceCard, SummaryCard
+│   │   │   ├── studio/         # StudioForm, StudioOutput
+│   │   │   └── library/        # LibraryGrid, LibraryCard, ViewModal
+│   │   ├── pages/              # LandingPage, LoginPage, RegisterPage, ChatPage,
+│   │   │                       # SearchPage, StudioPage, LibraryPage, SettingsPage, AdminPage
+│   │   ├── context/            # AuthContext, ToastContext
+│   │   ├── services/           # Axios/Fetch API client wrappers
+│   │   ├── types/              # Shared data contracts
+│   │   ├── styles/             # Tailwind / CSS tokens
+│   │   ├── App.tsx             # Route declarations
+│   │   └── main.tsx            # React DOM mounting
+│   ├── .env.example
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── tsconfig.json
+└── README.md
+7.2 API Endpoint Specifications
+All endpoints return JSON responses conforming to the standard envelope:
+
+Success: { "success": true, "data": { ... } }
+Error: { "success": false, "error": { "code": "STRING", "message": "Human readable explanation" } }
+Authentication & Account Endpoints
+1. Register Account
+Method & Path: POST /api/auth/register
+Auth Requirement: Public (Unauthenticated)
+Request Body:
+json
+{
+  "fullName": "Alex Johnson",
+  "email": "alex@example.com",
+  "password": "SecurePassword123!"
+}
+Success Response (201 Created):
+json
+{
+  "success": true,
+  "data": {
+    "user": { "id": "usr_123", "fullName": "Alex Johnson", "email": "alex@example.com", "role": "USER" },
+    "accessToken": "jwt_token_string"
+  }
+}
+Validation & Errors: Full name required; valid email format; password >= 8 characters. Returns 409 Conflict if email already registered.
+Owner: Developer 1
+2. Login
+Method & Path: POST /api/auth/login
+Auth Requirement: Public
+Request Body: { "email": "alex@example.com", "password": "SecurePassword123!" }
+Success Response (200 OK): User payload + accessToken (plus secure httpOnly refresh cookie).
+Errors: 401 Unauthorized for invalid credentials; 403 Forbidden if account suspended.
+Owner: Developer 1
+3. Get Current User Profile
+Method & Path: GET /api/auth/me
+Auth Requirement: Authenticated (Bearer <token>)
+Success Response (200 OK): Profile details and role.
+Owner: Developer 1
+4. Update Profile
+Method & Path: PATCH /api/users/profile
+Auth Requirement: Authenticated
+Request Body: { "fullName": "Alex W. Johnson" }
+Success Response (200 OK): Updated user object.
+Owner: Developer 1
+AI Chat Endpoints
+5. List Conversations
+Method & Path: GET /api/conversations
+Auth Requirement: Authenticated
+Success Response (200 OK):
+json
+{
+  "success": true,
+  "data": {
+    "conversations": [
+      { "id": "conv_01", "title": "GTM Strategy Ideas", "updatedAt": "2026-10-15T09:00:00Z" }
+    ]
+  }
+}
+Owner: Developer 1
+6. Create Conversation
+Method & Path: POST /api/conversations
+Auth Requirement: Authenticated
+Request Body: { "title": "New Conversation" }
+Success Response (201 Created): { "conversation": { "id": "conv_02", "title": "New Conversation" } }
+Owner: Developer 1
+7. Get Conversation Messages
+Method & Path: GET /api/conversations/:id
+Auth Requirement: Authenticated (Owner Check Enforced)
+Success Response (200 OK):
+json
+{
+  "success": true,
+  "data": {
+    "id": "conv_01",
+    "title": "GTM Strategy Ideas",
+    "messages": [
+      { "id": "msg_01", "role": "user", "content": "How do I plan GTM?", "createdAt": "..." },
+      { "id": "msg_02", "role": "assistant", "content": "Here are the 5 pillars...", "createdAt": "..." }
+    ]
+  }
+}
+Errors: 404 Not Found if conversation does not exist or belongs to another user.
+Owner: Developer 1
+8. Submit Chat Message
+Method & Path: POST /api/conversations/:id/messages
+Auth Requirement: Authenticated
+Request Body: { "content": "What distribution channels work best?" }
+Success Response (200 OK):
+json
+{
+  "success": true,
+  "data": {
+    "userMessage": { "id": "msg_03", "role": "user", "content": "..." },
+    "assistantMessage": { "id": "msg_04", "role": "assistant", "content": "The top 3 channels are..." }
+  }
+}
+Validation & Errors: Content string required (1 to 4000 characters). Returns 429 Too Many Requests if quota exceeded; 503 Service Unavailable if AI provider is unreachable.
+Owner: Developer 1
+Web Search & Discovery Endpoints
+9. Execute Web Search
+Method & Path: POST /api/search
+Auth Requirement: Authenticated
+Request Body: { "query": "Solid state battery breakthroughs 2026" }
+Success Response (200 OK):
+json
+{
+  "success": true,
+  "data": {
+    "query": "Solid state battery breakthroughs 2026",
+    "summary": "Recent 2026 developments demonstrate a 35% density jump...",
+    "sources": [
+      {
+        "title": "CleanTech Breakthroughs 2026",
+        "url": "https://cleantech-journal.org/battery-tech-26",
+        "snippet": "Commercial production begins for high-nickel silicon batteries..."
+      }
+    ]
+  }
+}
+Validation & Errors: Query between 3 and 200 characters. 502 Bad Gateway if search provider API fails.
+Owner: Developer 2
+Content Studio Endpoints
+10. Generate Studio Content
+Method & Path: POST /api/content/generate
+Auth Requirement: Authenticated
+Request Body:
+json
+{
+  "category": "MARKETING",
+  "format": "EMAIL_NEWSLETTER",
+  "instructions": "Announcing our new eco-friendly water bottle brand launch",
+  "tone": "Persuasive",
+  "length": "Medium"
+}
+Success Response (200 OK):
+json
+{
+  "success": true,
+  "data": {
+    "title": "Eco-Friendly Bottle Launch Newsletter",
+    "content": "Subject: Say Goodbye to Single-Use Plastic\n\nHey [Name],\n...",
+    "wordCount": 240
+  }
+}
+Validation & Errors: Required instructions; recognized format/tone enum.
+Owner: Developer 2
+Library Endpoints
+11. List Saved Content
+Method & Path: GET /api/library?category=ALL&search=
+Auth Requirement: Authenticated
+Success Response (200 OK):
+json
+{
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "id": "lib_01",
+        "title": "Eco-Friendly Bottle Launch",
+        "contentType": "MARKETING",
+        "previewText": "Subject: Say Goodbye to Single-Use Plastic...",
+        "createdAt": "2026-10-14T10:00:00Z"
+      }
+    ]
+  }
+}
+Owner: Developer 2
+12. Save Item to Library
+Method & Path: POST /api/library
+Auth Requirement: Authenticated
+Request Body:
+json
+{
+  "title": "Solid State Battery Research",
+  "contentType": "RESEARCH",
+  "content": "Recent 2026 developments demonstrate...",
+  "sourceMetadata": [
+    { "title": "CleanTech Breakthroughs", "url": "https://...", "snippet": "..." }
+  ]
+}
+Success Response (201 Created): { "item": { "id": "lib_02", "title": "..." } }
+Owner: Developer 2
+13. Delete Library Item
+Method & Path: DELETE /api/library/:id
+Auth Requirement: Authenticated (Owner Check Enforced)
+Success Response (200 OK): { "success": true, "message": "Item deleted successfully" }
+Errors: 404 Not Found if record does not belong to user.
+Owner: Developer 2
+Minimal Admin Endpoints
+14. Admin User Management
+Method & Path: GET /api/admin/users, PATCH /api/admin/users/:id/status, GET /api/admin/stats
+Auth Requirement: Admin Role Guard (user.role === 'ADMIN')
+Errors: 403 Forbidden for non-admin tokens.
+Owner: Developer 1
+8. MINIMUM DATA MODEL PROPOSAL
+The following schema defines the minimum required tables and relationships:
+
+mermaid
+erDiagram
+    User ||--o{ Conversation : owns
+    Conversation ||--|{ Message : contains
+    User ||--o{ SavedItem : saves
+    User {
+        string id PK
+        string email UK
+        string passwordHash
+        string fullName
+        string role "USER | ADMIN"
+        boolean isActive
+        datetime createdAt
+        datetime updatedAt
+    }
+    Conversation {
+        string id PK
+        string userId FK
+        string title
+        datetime createdAt
+        datetime updatedAt
+    }
+    Message {
+        string id PK
+        string conversationId FK
+        string role "user | assistant | system"
+        text content
+        datetime createdAt
+    }
+    SavedItem {
+        string id PK
+        string userId FK
+        string title
+        string contentType "TEXT | MARKETING | RESEARCH"
+        text content
+        json sourceMetadata "Nullable array of citation URLs/titles"
+        datetime createdAt
+        datetime updatedAt
+    }
+Relational Schema Definitions (Prisma / SQL Equivalent)
+prisma
+enum Role {
+  USER
+  ADMIN
+}
+enum ContentType {
+  TEXT
+  MARKETING
+  RESEARCH
+}
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  fullName      String
+  role          Role           @default(USER)
+  isActive      Boolean        @default(true)
+  conversations Conversation[]
+  savedItems    SavedItem[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  @@index([email])
+}
+model Conversation {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String    @default("New Conversation")
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  @@index([userId])
+}
+model Message {
+  id             String       @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String       // "user" | "assistant" | "system"
+  content        String       @db.Text
+  createdAt      DateTime     @default(now())
+  @@index([conversationId])
+}
+model SavedItem {
+  id             String      @id @default(uuid())
+  userId         String
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title          String
+  contentType    ContentType @default(TEXT)
+  content        String      @db.Text
+  sourceMetadata Json?       // Stores [{ title, url, snippet }] for RESEARCH items
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  @@index([userId, contentType])
+}
+9. EXACT TWO-DEVELOPER TASK OWNERSHIP
+Both developers will implement end-to-end full-stack slices within their assigned domain boundaries to ensure rapid progress without overlapping code churn.
+
+mermaid
+graph TD
+    subgraph Developer 1: Core AI Workspace
+        D1_F[Frontend: Chat Canvas & Message Bubbles]
+        D1_A[Frontend & Backend: Auth & Session Management]
+        D1_B[Backend: Conversation & Message APIs]
+        D1_AI[Backend: LLM Chat Service Integration]
+        D1_ADM[Admin Console & User Profile Settings]
+    end
+    subgraph Developer 2: Discovery & Content Features
+        D2_S[Frontend & Backend: Live Web Search & Citations]
+        D2_C[Frontend & Backend: Content Studio Generator]
+        D2_L[Frontend & Backend: My Library CRUD & Filters]
+        D2_M[Backend: Search API Integration Tavily/Serper]
+        D2_T[Shared UI: Form Controls, Cards, Modals]
+    end
+    subgraph Shared Collaboration
+        CO_TOK[Design Tokens & Base AppShell Component]
+        CO_PRISMA[Database Schema & Initial Migrations]
+        CO_REV[Code Reviews & End-to-End Flow Verification]
+    end
+Responsibility Breakdown & File Allocation
+Domain Area	Developer 1 (Core Workspace Lead)	Developer 2 (Discovery & Content Lead)
+Frontend Paths	src/pages/LandingPage.tsx
+src/pages/LoginPage.tsx
+src/pages/RegisterPage.tsx
+src/pages/ChatPage.tsx
+src/pages/AdminPage.tsx
+src/pages/SettingsPage.tsx
+src/components/chat/*
+src/context/AuthContext.tsx	src/pages/SearchPage.tsx
+src/pages/StudioPage.tsx
+src/pages/LibraryPage.tsx
+src/components/search/*
+src/components/studio/*
+src/components/library/*
+src/components/common/* (Cards, Modals)
+Backend Paths	src/routes/authRoutes.ts
+src/routes/chatRoutes.ts
+src/routes/adminRoutes.ts
+src/controllers/authController.ts
+src/controllers/chatController.ts
+src/controllers/adminController.ts
+src/services/aiService.ts	src/routes/searchRoutes.ts
+src/routes/studioRoutes.ts
+src/routes/libraryRoutes.ts
+src/controllers/searchController.ts
+src/controllers/studioController.ts
+src/controllers/libraryController.ts
+src/services/searchService.ts
+Shared / Co-Owned	src/components/layout/AppShell.tsx (Dev 1 primary)
+prisma/schema.prisma (Co-signed before applying migrations)	src/styles/designTokens.css (Dev 2 primary)
+src/types/sharedContracts.ts (Jointly maintained)
+Git Workflow & Pull Request Protocols
+Trunk-Based Development: main branch is protected. No direct commits allowed.
+Branch Naming Standard:
+Dev 1: feature/dev1-auth-flow, feature/dev1-chat-workspace, feature/dev1-admin
+Dev 2: feature/dev2-web-search, feature/dev2-content-studio, feature/dev2-library
+Atomic Pull Requests: PRs must be under 400 lines of diff where feasible, must build cleanly without TypeScript errors, and require explicit peer review from the other developer before merging.
+10. MILESTONES, DEPENDENCIES, AND ACCEPTANCE CRITERIA
+mermaid
+gantt
+    title Zunme AI MVP Implementation Schedule
+    dateFormat  YYYY-MM-DD
+    section Milestone 1
+    Requirements & Architecture Blueprint :done, m1, 2026-10-15, 1d
+    section Milestone 2
+    Shared Scaffolding & Design Tokens     :active, m2, 2026-10-16, 2d
+    Authentication & AppShell Shell        :m2_auth, after m2, 2d
+    section Milestone 3
+    Dev 1: AI Chat Workspace & LLM API    :m3_chat, after m2_auth, 4d
+    Dev 2: Web Search & Content Studio     :m3_content, after m2_auth, 4d
+    section Milestone 4
+    Dev 2: My Library Integration          :m4_lib, after m3_content, 3d
+    Dev 1: Settings, Admin & E2E Flows     :m4_admin, after m3_chat, 3d
+    section Milestone 5
+    QA, Responsive & Security Audit        :m5_qa, after m4_lib, 2d
+    Production MVP Delivery Readiness      :m5_del, after m5_qa, 1d
+Detailed Milestone Breakdown
+Milestone 1: Blueprint, Wireframes & Contracts Approval
+Status: Current step (Completed via this document).
+Deliverable: Comprehensive architectural blueprint, wireframes, data model, API contracts, and developer assignments.
+Acceptance Criteria: Formal stakeholder confirmation of scope and provider selections.
+Milestone 2: Shared Foundation, Authentication, Design Tokens & Dashboard Shell
+Deliverables:
+Clean repository scaffolding (Frontend/ with Vite + React + TypeScript; Backend/ with Express + TypeScript).
+Design tokens defined in CSS/Tailwind (#635BFF, #FFFFFF, #111827, #F3F4F6).
+Database initialized with User table and auth migrations.
+Working Authentication: Sign Up, Sign In, Token generation, and Protected Route wrapper.
+Reusable AppShell with responsive sidebar and top header.
+Owners: Dev 1 (Auth + AppShell logic); Dev 2 (Design Tokens + Common UI primitives).
+Acceptance Criteria: A user can register a new account, log in, view the responsive dashboard shell, and log out.
+Out of Scope: Chat message processing, search queries.
+Milestone 3: Parallel Development of Chat & Discovery/Content Features
+Deliverables:
+Dev 1: AI Chat Workspace (/app/chat). Multi-turn conversation UI, message persistence in database, LLM provider integration with error handling.
+Dev 2: Web Search Engine (/app/search) with live search provider integration and source cards. Content Studio (/app/studio) with format parameters and text generation.
+Dependencies: Completed Milestone 2 authentication and AppShell.
+Acceptance Criteria:
+Dev 1: Submitting a chat prompt receives an AI answer and saves conversation history.
+Dev 2: Submitting a search query returns verified web URLs + AI summary; Studio generates formatted marketing copy.
+Out of Scope: Cross-saving to library (deferred to Milestone 4).
+Milestone 4: Library Integration, End-to-End User Flows & Admin
+Deliverables:
+Dev 2: My Library (/app/library). Centralized repository with category filtering, search, detail view modal, copy to clipboard, and deletion. Connect "Save to Library" buttons in Chat, Search, and Studio.
+Dev 1: Account Settings (/app/settings) profile editing; Minimal Admin Console (/admin) for operational metrics and user suspension.
+Acceptance Criteria:
+User can save outputs from Chat, Search, and Studio into the Library, filter by category, and delete records.
+Non-admin users are blocked from /admin. Admin can toggle user active status.
+Milestone 5: Testing, Hardening, Responsive Polish & Launch Readiness
+Deliverables:
+End-to-end responsive layout validation across 320px, 375px, 768px, 1024px, 1440px, and 1920px viewports.
+Error boundary handling (provider outages, rate limits, invalid tokens).
+Test suite: Unit tests for auth/token helpers, API integration tests for CRUD endpoints.
+Complete setup documentation (README.md, .env.example).
+Acceptance Criteria: Zero layout overflow across tested viewports; all 5 user flows function end-to-end; test suite passes cleanly.
+11. RISKS AND DECISIONS REQUIRING CLIENT CONFIRMATION
+Key Architectural Risks & Mitigation Strategies
+Search & AI Provider Outages / Latency:
+Risk: Third-party AI or Web Search API spikes to 8+ seconds latency or encounters rate limit errors.
+Mitigation: Implement server-side request timeouts (15s maximum), clear UI loading progress states, and actionable error alerts with a single-click retry mechanism.
+Credential & API Key Security:
+Risk: AI provider API keys accidentally leaked into client-side bundles.
+Mitigation: Strict architecture isolation. Client communicates only with the Zunme backend API. All third-party provider keys reside exclusively in backend environment variables (.env).
+Database Authorization Leaks:
+Risk: Malicious user accesses or deletes another user's saved research or chat messages by guessing UUIDs.
+Mitigation: Server-side ownership guards on every single entity query (e.g., WHERE id = :id AND userId = :currentUserId).
+Immediate Decisions Required from Client
+text
+┌───┬───────────────────────────────┬──────────────────────────────────┬────────────────────────┐
+│ # │ Decision Subject              │ Option A (Recommended)           │ Option B               │
+├───┼───────────────────────────────┼──────────────────────────────────┼────────────────────────┤
+│ 1 │ AI Provider Selection         │ OpenAI API (gpt-4o-mini / 4o)    │ Anthropic Claude 3.5   │
+│ 2 │ Search Provider Selection     │ Tavily Search API (Agent-native) │ Serper.dev / Brave     │
+│ 3 │ Streaming Responses           │ SSE Token Streaming              │ Standard JSON Request  │
+│ 4 │ Email Verification in MVP     │ In-App / Deferred for MVP        │ Live SendGrid/Resend   │
+└───┴───────────────────────────────┴──────────────────────────────────┴────────────────────────┘
+12. THE SINGLE BEST NEXT IMPLEMENTATION TASK AFTER APPROVAL
+Upon client review and formal approval of this blueprint, the immediate next technical task is:
+
+Execute Milestone 2 Initialization:
+Initialize the repository foundations by setting up the Vite + React + TypeScript application inside /Frontend and the Node.js + Express + TypeScript server inside /Backend, configuring ESLint/Prettier, installing baseline dependencies, establishing the CSS custom tokens (#635BFF palette), and creating .env.example templates without altering business logic.
+
+This blueprint concludes the read-only planning phase. Please review and provide sign-off to proceed to Milestone 2 implementation.
